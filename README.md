@@ -162,8 +162,9 @@ INFURA_API_KEY='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 ### To Run Hardhat Tests
 
 ```console
-yarn install
+yarn
 yarn symlink
+git submodule update --init --recursive
 yarn compile
 yarn test
 ```
