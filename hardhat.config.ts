@@ -74,7 +74,7 @@ export default {
       url: `https://polygon-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
     },
     zkSyncLocalSetup: {
-      url: "http://localhost:3050",
+      url: "http://localhost:8011",
       ethNetwork: "http://localhost:8545",
       zksync: true,
     },
@@ -83,6 +83,16 @@ export default {
       ethNetwork: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
       zksync: true,
       verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification'
+    },
+    zksyncTestnet: {
+      url: "https://sepolia.era.zksync.dev",
+      chainId: 300,
+      gasPrice: 10000000,
+      accounts: [process.env.PRIVATE_KEY],
+      live: false,
+      zksync: true,
+      verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification',
+      ethNetwork: 'sepolia',
     },
   },
   namedAccounts: {
