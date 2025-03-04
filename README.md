@@ -156,6 +156,7 @@ Run yarn commands to compile and test
 
 ```console
 yarn install
+git submodule update --init --recursive
 yarn symlink
 yarn compile
 yarn test
