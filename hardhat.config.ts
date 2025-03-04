@@ -31,18 +31,25 @@ export default {
       ethNetwork: '',
       zksync: true,
     },
-    zkSyncTestnet: {
-      url: 'https://testnet.era.zksync.dev',
-      ethNetwork: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
+    zksysTestnet: {
+      url: 'https://rpc.zksys.zeeve.online',
+      ethNetwork: "goerli",
       zksync: true,
-      verifyURL: 'https://zksync2-testnet-explorer.zksync.dev/contract_verification',
     },
-    zkSyncMainnet: {
-      url: 'https://mainnet.era.zksync.io',
-      ethNetwork: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
-      zksync: true,
-      verifyURL: 'https://zksync2-mainnet-explorer.zksync.io/contract_verification',
-    },
+  },
+  etherscan: {
+    apiKey: {
+      zksysTestnet: 'empty',
+    }, customChains: [
+      {
+        network: 'zksysTestnet',
+        chainId: 5701,
+        urls: {
+          apiURL: 'https://explorer-test-zk.syscoin.org/api',
+          browserURL: 'https://explorer-test-zk.syscoin.org'
+        }
+      }
+    ]
   },
   defaultNetwork: 'zkSyncTestNode',
   solidity: {
