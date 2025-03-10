@@ -2,8 +2,10 @@
 import 'hardhat-typechain'
 import '@nomiclabs/hardhat-ethers'
 import '@matterlabs/hardhat-zksync-solc'
-import '@matterlabs/hardhat-zksync-verify'
+import "@matterlabs/hardhat-zksync-verify";
+
 import '@matterlabs/hardhat-zksync-chai-matchers'
+// import "@nomicfoundation/hardhat-verify";
 import { task } from 'hardhat/config'
 import deployZkSyncEra from './script/deploy_zksync_era'
 import dotenv from 'dotenv'
@@ -51,7 +53,7 @@ export default {
       }
     ]
   },
-  defaultNetwork: 'zkSyncTestNode',
+  defaultNetwork: 'zksysTestnet',
   solidity: {
     version: '0.8.17',
   },

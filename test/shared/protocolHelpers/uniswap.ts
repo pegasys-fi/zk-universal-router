@@ -4,13 +4,13 @@ import { utils as zkUtils } from 'zksync-web3'
 import bn from 'bignumber.js'
 import { BigNumber, BigNumberish } from 'ethers'
 import { Contract } from '@ethersproject/contracts'
-import * as PAIR_V2_ARTIFACT from '@uniswap/v2-core/artifacts-zk/contracts/UniswapV2Pair.sol/UniswapV2Pair.json'
+import * as PAIR_V2_ARTIFACT from '@pegasys/v2-core/artifacts-zk/contracts/PegasysV2Pair.sol/PegasysV2Pair.json'
 import { getWallets } from '../zkSyncUtils'
-import { FeeAmount, TICK_SPACINGS } from '@uniswap/v3-sdk'
+import { FeeAmount, TICK_SPACINGS } from '@pegasys/v3-sdk'
 
 bn.config({ EXPONENTIAL_AT: 999999, DECIMAL_PLACES: 40 })
 
-export async function createPairAndMintUniswapV2(
+export async function createPairAndMintPegasysV2(
   v2Factory: Contract,
   token0: Contract,
   token1: Contract,
@@ -25,7 +25,7 @@ export async function createPairAndMintUniswapV2(
   await pair.mint(getWallets()[0].address)
 }
 
-export async function createPoolAndMintUniswapV3(
+export async function createPoolAndMintPegasysV3(
   nftManager: Contract,
   token0: Contract,
   token1: Contract,
@@ -35,7 +35,7 @@ export async function createPoolAndMintUniswapV3(
 ) {
   if (!isTokenOrderCorrect(token0, token1)) {
     ;[token0, token1] = [token1, token0]
-    ;[amount0, amount1] = [amount1, amount0]
+      ;[amount0, amount1] = [amount1, amount0]
   }
   await nftManager.createAndInitializePoolIfNecessary(
     token0.address,

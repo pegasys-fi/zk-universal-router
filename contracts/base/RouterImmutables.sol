@@ -67,16 +67,16 @@ contract RouterImmutables {
     /// @dev The address of router rewards distributor
     address internal immutable ROUTER_REWARDS_DISTRIBUTOR;
 
-    /// @dev The address of UniswapV2Factory
+    /// @dev The address of PegasysV2Factory
     address internal immutable UNISWAP_V2_FACTORY;
 
-    /// @dev The address of UniswapV2Pair initcodehash
+    /// @dev The address of PegasysV2Pair initcodehash
     bytes32 internal immutable UNISWAP_V2_PAIR_INIT_CODE_HASH;
 
-    /// @dev The address of UniswapV3Factory
+    /// @dev The address of PegasysV3Factory
     address internal immutable UNISWAP_V3_FACTORY;
 
-    /// @dev The address of UniswapV3Pool initcodehash
+    /// @dev The address of PegasysV3Pool initcodehash
     bytes32 internal immutable UNISWAP_V3_POOL_INIT_CODE_HASH;
 
     constructor(RouterParameters memory params) {

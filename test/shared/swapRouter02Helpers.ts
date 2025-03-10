@@ -1,4 +1,4 @@
-import { FeeAmount } from '@uniswap/v3-sdk'
+import { FeeAmount } from '@pollum-io/v3-sdk'
 
 const FEE_SIZE = 3
 

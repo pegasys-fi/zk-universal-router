@@ -1,6 +1,6 @@
 import type { Contract } from '@ethersproject/contracts'
 import { TransactionReceipt } from '@ethersproject/abstract-provider'
-import { FeeAmount } from '@uniswap/v3-sdk'
+import { FeeAmount } from '@pollum-io/v3-sdk'
 import { parseEvents, V2_EVENTS, V3_EVENTS } from './shared/parseEvents'
 import { expect } from 'chai'
 import { encodePath } from './shared/swapRouter02Helpers'
@@ -34,13 +34,13 @@ import { deployContract, getWallets } from './shared/zkSyncUtils'
 import { Wallet } from 'zksync-web3'
 import { abi as safeCastAbi } from '../artifacts-zk/permit2/src/libraries/SafeCast160.sol/SafeCast160.json'
 import {
-  createPairAndMintUniswapV2,
-  createPoolAndMintUniswapV3,
+  createPairAndMintPegasysV2,
+  createPoolAndMintPegasysV3,
   isTokenOrderCorrect,
   computePairAddress,
-} from './shared/protocolHelpers/uniswap'
+} from './shared/protocolHelpers/pegasys'
 
-describe('Uniswap V2 and V3 Tests:', () => {
+describe('Pegasys V2 and V3 Tests:', () => {
   let alice: Wallet
   let bob: Wallet
   let router: UniversalRouter
@@ -67,21 +67,21 @@ describe('Uniswap V2 and V3 Tests:', () => {
     const nftManager = await deployNftManager(v3Factory.address, wethContract.address)
 
     // v2 liquidity amounts from the original tests
-    await createPairAndMintUniswapV2(
+    await createPairAndMintPegasysV2(
       v2Factory,
       daiContract,
       wethContract,
       BigNumber.from('8140529658966941313012915'),
       BigNumber.from('4430761666523311112725')
     )
-    await createPairAndMintUniswapV2(
+    await createPairAndMintPegasysV2(
       v2Factory,
       daiContract,
       usdcContract,
       BigNumber.from('60144550130643463746539502'),
       BigNumber.from('60116888330202')
     )
-    await createPairAndMintUniswapV2(
+    await createPairAndMintPegasysV2(
       v2Factory,
       wethContract,
       usdcContract,
@@ -89,14 +89,14 @@ describe('Uniswap V2 and V3 Tests:', () => {
       BigNumber.from('62122035788372')
     )
 
-    await createPairAndMintUniswapV2(
+    await createPairAndMintPegasysV2(
       v2Factory,
       daiContract,
       usdtContract,
       BigNumber.from('3412637957762525698494106'),
       BigNumber.from('3408522124913')
     )
-    await createPairAndMintUniswapV2(
+    await createPairAndMintPegasysV2(
       v2Factory,
       wethContract,
       usdtContract,
@@ -105,7 +105,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
     )
 
     // v3 liquidity amounts the same as for v2, price should be roughly the same
-    await createPoolAndMintUniswapV3(
+    await createPoolAndMintPegasysV3(
       nftManager,
       daiContract,
       wethContract,
@@ -113,7 +113,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
       BigNumber.from('4430761666523311112725'),
       FeeAmount.MEDIUM
     )
-    await createPoolAndMintUniswapV3(
+    await createPoolAndMintPegasysV3(
       nftManager,
       daiContract,
       usdcContract,
@@ -121,7 +121,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
       BigNumber.from('60116888330202'),
       FeeAmount.MEDIUM
     )
-    await createPoolAndMintUniswapV3(
+    await createPoolAndMintPegasysV3(
       nftManager,
       wethContract,
       usdcContract,
@@ -152,7 +152,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
     await wethContract.connect(bob).approve(permit2.address, MAX_UINT)
   })
 
-  describe('Trade on Uniswap with Permit2, giving approval every time', () => {
+  describe('Trade on Pegasys with Permit2, giving approval every time', () => {
     describe('ERC20 --> ERC20', () => {
       let permit: PermitSingle
 
@@ -323,7 +323,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
     })
   })
 
-  describe('Trade on UniswapV2', () => {
+  describe('Trade on PegasysV2', () => {
     const amountIn: BigNumber = expandTo18DecimalsBN(5)
     beforeEach(async () => {
       // for these tests Bob gives the router max approval on permit2
@@ -516,7 +516,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
     })
   })
 
-  describe('Trade on UniswapV3', () => {
+  describe('Trade on PegasysV3', () => {
     const amountIn: BigNumber = expandTo18DecimalsBN(500)
     const amountInMax: BigNumber = expandTo18DecimalsBN(2000)
     const amountOut: BigNumber = expandTo18DecimalsBN(1)
